@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Pet Website</title>
+    <link rel="icon" href="https://via.placeholder.com/32" type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,6 +15,14 @@
         }
         #pet {
             margin-top: 20px;
+            width: 150px;
+            position: relative;
+            animation: move 3s linear infinite;
+        }
+        @keyframes move {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+            100% { transform: translateX(0); }
         }
         button {
             background-color: #4CAF50;
@@ -38,7 +47,7 @@
     <h1>Welcome to Your Virtual Pet!</h1>
     <p>Take care of your pet by feeding and playing with it.</p>
     
-    <img id="pet" src="https://via.placeholder.com/150" alt="Virtual Pet">
+    <img id="pet" src="https://via.placeholder.com/150?text=Happy+Pet" alt="Virtual Pet">
     <div id="status">Happiness: 50 | Hunger: 50</div>
     
     <button onclick="feedPet()">Feed</button>
@@ -84,4 +93,5 @@
     </script>
 </body>
 </html>
+
 

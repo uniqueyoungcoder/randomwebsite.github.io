@@ -56,6 +56,14 @@
         <button class="button" onclick="startDrawing()">Start Drawing</button>
         <button class="button" onclick="changeBackground()">Change Background Color</button>
         <button class="button" onclick="showTime()">Show Current Time</button>
+        <button class="button" onclick="playSound()">Play Sound</button>
+        <button class="button" onclick="generateRandomNumber()">Generate Random Number</button>
+        <button class="button" onclick="showDate()">Show Current Date</button>
+        <button class="button" onclick="flipCoin()">Flip a Coin</button>
+        <button class="button" onclick="countClicks()">Count Clicks</button>
+        <button class="button" onclick="toggleVisibility()">Toggle Visibility</button>
+        <button class="button" onclick="changeFont()">Change Font Style</button>
+        <button class="button" onclick="rollDice()">Roll a Dice</button>
 
         <div class="fun-section" id="fun-section">
             <!-- Content will appear here -->
@@ -72,6 +80,8 @@
             "Happiness is not by chance, but by choice.",
             "Dream big and dare to fail."
         ];
+
+        let clickCount = 0;
 
         function showQuote() {
             const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -110,6 +120,53 @@
             const timeString = now.toLocaleTimeString();
             const funSection = document.getElementById('fun-section');
             funSection.innerHTML = `<p class='quote'>Current Time: ${timeString}</p>`;
+        }
+
+        function playSound() {
+            const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+            audio.play();
+        }
+
+        function generateRandomNumber() {
+            const randomNumber = Math.floor(Math.random() * 100) + 1;
+            const funSection = document.getElementById('fun-section');
+            funSection.innerHTML = `<p class='quote'>Random Number: ${randomNumber}</p>`;
+        }
+
+        function showDate() {
+            const now = new Date();
+            const dateString = now.toDateString();
+            const funSection = document.getElementById('fun-section');
+            funSection.innerHTML = `<p class='quote'>Current Date: ${dateString}</p>`;
+        }
+
+        function flipCoin() {
+            const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+            const funSection = document.getElementById('fun-section');
+            funSection.innerHTML = `<p class='quote'>Coin Flip: ${result}</p>`;
+        }
+
+        function countClicks() {
+            clickCount++;
+            const funSection = document.getElementById('fun-section');
+            funSection.innerHTML = `<p class='quote'>Button Clicks: ${clickCount}</p>`;
+        }
+
+        function toggleVisibility() {
+            const canvas = document.getElementById('drawingCanvas');
+            canvas.style.display = canvas.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function changeFont() {
+            const fonts = ['Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana'];
+            const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+            document.body.style.fontFamily = randomFont;
+        }
+
+        function rollDice() {
+            const diceRoll = Math.floor(Math.random() * 6) + 1;
+            const funSection = document.getElementById('fun-section');
+            funSection.innerHTML = `<p class='quote'>You rolled a: ${diceRoll}</p>`;
         }
     </script>
 </body>

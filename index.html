@@ -54,6 +54,8 @@
         
         <button class="button" onclick="showQuote()">Show Random Quote</button>
         <button class="button" onclick="startDrawing()">Start Drawing</button>
+        <button class="button" onclick="changeBackground()">Change Background Color</button>
+        <button class="button" onclick="showTime()">Show Current Time</button>
 
         <div class="fun-section" id="fun-section">
             <!-- Content will appear here -->
@@ -95,6 +97,19 @@
                 ctx.arc(event.offsetX, event.offsetY, 5, 0, Math.PI * 2);
                 ctx.fill();
             }
+        }
+
+        function changeBackground() {
+            const colors = ['#ffafbd', '#ffc3a0', '#a1c4fd', '#c2e59c', '#fbc2eb'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.background = `linear-gradient(to right, ${randomColor}, #ffffff)`;
+        }
+
+        function showTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const funSection = document.getElementById('fun-section');
+            funSection.innerHTML = `<p class='quote'>Current Time: ${timeString}</p>`;
         }
     </script>
 </body>

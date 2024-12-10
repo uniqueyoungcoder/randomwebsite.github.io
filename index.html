@@ -63,6 +63,7 @@
         <button class="button" onclick="playSound('beep')">Play Song 1</button>
         <button class="button" onclick="playSound('chime')">Play Song 2</button>
         <button class="button" onclick="playSound('click')">Play Song 3</button>
+        <button class="button" onclick="stopSound()">Stop Sound</button>
         <button class="button" onclick="generateRandomNumber()">Generate Random Number</button>
         <button class="button" onclick="showDate()">Show Current Date</button>
         <button class="button" onclick="flipCoin()">Flip a Coin</button>
@@ -100,6 +101,7 @@
 
         let audioVolume = 0.5; // Default volume
         let clickCount = 0;
+        let currentAudio = null; // Track the currently playing audio
 
         function showQuote() {
             const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -146,16 +148,31 @@
                 return;
             }
 
-            const audio = new Audio(audioFiles[type]);
-            audio.volume = audioVolume;
-            audio.play().catch(error => {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+
+            currentAudio = new Audio(audioFiles[type]);
+            currentAudio.volume = audioVolume;
+            currentAudio.play().catch(error => {
                 console.error("Audio playback failed:", error);
             });
+        }
+
+        function stopSound() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
         }
 
         function adjustVolume(value) {
             audioVolume = parseFloat(value);
             console.log("Volume adjusted to:", audioVolume);
+            if (currentAudio) {
+                currentAudio.volume = audioVolume;
+            }
         }
 
         function generateRandomNumber() {
